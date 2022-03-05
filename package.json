@@ -1,0 +1,24 @@
+{
+  "name": "head-space",
+  "version": "1.0.0",
+  "description": "A social media backend for philosophical thoughts and shitposts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naomilounsbury/head-space.git"
+  },
+  "author": "Naomi Lounsbury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naomilounsbury/head-space/issues"
+  },
+  "homepage": "https://github.com/Naomilounsbury/head-space#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4"
+  }
+}
