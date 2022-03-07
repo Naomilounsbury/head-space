@@ -18,6 +18,7 @@ mongoose.connect(
 );
 
 mongoose.set("debug", true);
+const formatDate = require("./utils/formatDate");
 
 // // A user has been created already for our activity purposes
 // db.User.create({ name: "Ernest Hemingway" })
