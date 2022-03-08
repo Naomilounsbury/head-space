@@ -20,57 +20,7 @@ mongoose.connect(
 mongoose.set("debug", true);
 const formatDate = require("./utils/formatDate");
 
-// // A user has been created already for our activity purposes
-// db.User.create({ name: "Ernest Hemingway" })
-//   .then((dbUser) => {
-//     console.log(dbUser);
-//   })
-//   .catch(({ message }) => {
-//     console.log(message);
-//   });
-
-// // Retrieve all notes
-// app.get("/notes", (req, res) => {
-//   db.Thoughts.find({})
-//     .then((dbNote) => {
-//       res.json(dbNote);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
-
-// // Retrieve all users
-// app.get("/user", (req, res) => {
-//   db.User.find({})
-//     .then((dbUser) => {
-//       res.json(dbUser);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
-
-// // Create a new note and associate it with user
-// app.post("/submit", ({ body }, res) => {
-//   db.Note.create(body)
-//     .then(({ _id }) =>
-//       db.User.findOneAndUpdate({}, { $push: { notes: _id } }, { new: true })
-//     )
-//     .then((dbUser) => {
-//       res.json(dbUser);
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
-
-// app.get("/populate", (req, res) => {
-//   // Write the query to `find()` all of the users from the User collection
-//   // and `populate()` them with any associated notes.
-//   // YOUR CODE HERE
-//   //
-// });
+app.use(require("./routes"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

@@ -1,5 +1,5 @@
-const User = require("../../models/User");
-const { Thought } = require("../models");
+const User = require("../models/User");
+const Thought = require("../models/Thought");
 const thoughtController = {
   getAllThoughts(req, res) {
     Thought.find({})
@@ -29,7 +29,7 @@ const thoughtController = {
         res.sendStatus(400);
       });
   },
- // example data
+  // example data
   // {
   //   "thoughtText": "Here's a cool thought...",
   //   "username": "lernantino",
@@ -70,9 +70,5 @@ const thoughtController = {
       .catch((err) => res.json(err));
   },
 };
-
-
-
- 
 
 module.exports = thoughtController;
