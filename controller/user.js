@@ -1,12 +1,12 @@
-const User= require("../models/User");
+const User = require("../models/User");
 //TODO GET all users
 const userController = {
   getAllUsers(req, res) {
     User.find({})
-      .populate({
-        path: "thought",
-        select: "-__v",
-      })
+      // .populate({
+      //   path: "thought",
+      //   select: "-__v",
+      // })
       .select("-__v")
       .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
@@ -19,10 +19,10 @@ const userController = {
   //TODOGET a single user by its _id and populated thought and friend data
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-      .populate({
-        path: "thought",
-        select: "-__v",
-      })
+      // .populate({
+      //   path: "thought",
+      //   select: "-__v",
+      // })
       .select("-__v")
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
@@ -64,7 +64,6 @@ const userController = {
       .catch((err) => res.json(err));
   },
   //TODO: DELETE to remove user by its _id
-
 
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })

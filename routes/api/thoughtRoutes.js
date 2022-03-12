@@ -7,14 +7,17 @@ const {
   deleteThought,
 } = require("../../controller/thought");
 
-// /api/pizzas
 router.route("/").get(getAllThoughts).post(createThought);
 
-// /api/pizzas/:id
 router
   .route("/:id")
   .get(getThoughtById)
   .put(updateThought)
   .delete(deleteThought);
+const { addReaction, removeReaction } = require("../../controller/reaction");
+
+router.route("/:id/reactions").post(addReaction);
+
+router.route("/:thoughtId/reactions/:reactionId").delete(removeReaction);
 
 module.exports = router;

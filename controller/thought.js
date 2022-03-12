@@ -1,13 +1,14 @@
 const User = require("../models/User");
 const Thought = require("../models/Thought");
+
 const thoughtController = {
   getAllThoughts(req, res) {
-    Thought.find({})
-      .populate({
-        path: "user",
-        select: "-__v",
-      })
-      .select("-__v")
+    Thought.find()
+      // .populate({
+      //   path: "user",
+      //   select: "-__v",
+      // })
+      // .select("-__v")
       .sort({ _id: -1 })
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => {
@@ -18,11 +19,11 @@ const thoughtController = {
 
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
-      .populate({
-        path: "user",
-        select: "-__v",
-      })
-      .select("-__v")
+      // .populate({
+      //   path: "user",
+      //   select: "-__v",
+      // })
+      //.select("-__v")
       .then((dbThoughtData) => res.json(dbThoughtData))
       .catch((err) => {
         console.log(err);
@@ -36,12 +37,16 @@ const thoughtController = {
   //   "userId": "5edff358a0fcb779aa7b118b"
   // }
   createThought({ params, body }, res) {
+    //before the create find the user based on the user id in the body
+    //use a get then use that username to add it to the create
     Thought.create(body)
-      .then(({ _id }) => {
+      .then((dbThoughtData) => {
+        console.log(params.userId);
         return User.findOneAndUpdate(
-          { _id: params.userId },
-          { $push: { thought: _id } },
-          { new: true }
+          { _id: body.userId },
+          { $push: { thought: dbThoughtData._id } },
+          { new: true },
+          console.log(params.userId)
         );
       })
       .then((dbThoughtData) => res.json(dbThoughtData))
